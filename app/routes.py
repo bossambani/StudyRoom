@@ -1,4 +1,4 @@
-from flask import request, render_template, redirect, url_for
+from flask import request, render_template, redirect, url_for, flash
 from app import app, db
 from app.models import User
 from werkzeug.security import generate_password_hash
@@ -32,6 +32,8 @@ def signup():
        
         db.session.add(new_user)
         db.session.commit()
+
+        flash('Signup successful! Please login.', 'success')
         return redirect(url_for('login'))
     
     return render_template('signup.html')
@@ -49,3 +51,4 @@ def login():
     - render_template: Renders the login page.
     """
     return render_template('login.html')
+
