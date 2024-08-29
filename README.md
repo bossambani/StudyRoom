@@ -26,16 +26,11 @@
 3. Install Dependencies:
     - pip install -r requirements.txt
 
-4. Set Up the Database:
-    - flask db init
-    - flask db migrate -m "Initial migration"
-    - flask db upgrade
 
-5. Run the Application
+4. Run the Application
     flask run
 
 
 ## Usage
 1. Sign Up and Log In:
 
-c
