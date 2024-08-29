@@ -4,37 +4,55 @@
 <title>Sign-Up</title>
 {% endblock %}
 
-{% block content%}
-
-
+{% block content %}
 
 <div class="container">
     <div class="row">
         <div class="col-md-6 offset-md-3">
-<form action="/signup" method="post" class="p-4 rounded shadow bg-light mt-2">
-    <div>
-        <h1>Sign Up</h1>
-    </div>
-    <div class="mb-3">
-    <label for="username" class="form-label">Username</label>
-    <input type="text" class="form-control" id="username" name="username" required>
-    </div>
+            <form action="/signup" method="post" enctype="multipart/form-data" class="p-4 rounded shadow bg-light mt-3">
+                <div>
+                    <h1>Sign Up</h1>
+                </div>
 
-    <div class="mb-3">
-    <label for="email" class="form-label">Email</label>
-    <input type="email" class="form-control" id="email" name="email" required>
+                <div class="mb-3">
+                    <label for="firstname" class="form-label">Firstname</label>
+                    <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Enter First Name" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="lastname" class="form-label">Lastname</label>
+                    <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Enter Last Name" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" class="form-control" id="username" name="username" placeholder="Enter Username" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="password1" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password1" name="password1" placeholder="Enter Password" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="password2" class="form-label">Confirm Password</label>
+                    <input type="password" class="form-control" id="password2" name="password2" placeholder="Confirm Password" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="profilepicture" class="form-label">Profile Picture</label>
+                    <input type="file" class="form-control" id="profilepicture" name="profilepicture" required>
+                </div>
+
+                <input type="submit" class="btn btn-primary w-100" value="Sign Up">
+            </form>
+        </div>
     </div>
-
-    <div class="mb-3">
-    <label for="password" class="form-label">Password</label>
-    <input type="password" class="form-control" id="password" name="password" required>
-    </div>
-
-    <input type="submit" class="btn btn-primary" value="Sign Up">
-</form>
-
-</div>
-</div>
 </div>
 
 {% endblock %}
