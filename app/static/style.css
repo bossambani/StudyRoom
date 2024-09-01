@@ -1,0 +1,25 @@
+/* Ensure the profile picture is round */
+.account-img {
+    width: 100px; /* Adjust size as needed */
+    height: 100px; /* Adjust size as needed */
+    object-fit: cover; /* Ensures the image covers the entire circle */
+    border-radius: 50%; /* Makes the image round */
+}
+
+/* Align profile picture and user details inline */
+.media {
+    display: flex;
+    align-items: center;
+}
+
+.media-body {
+    margin-left: 1rem; /* Space between the image and the text */
+}
+
+.d-flex {
+    display: flex;
+}
+
+.align-items-center {
+    align-items: center;
+}

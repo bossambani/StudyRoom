@@ -6,6 +6,7 @@
     <title>{% block title %}Home{% endblock %}</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
    
     {% block style %}
     {% endblock %}
@@ -19,6 +20,7 @@
             <div class="navbar-nav">
                 {% if user.is_authenticated %}
                 <a class="nav-item nav-link" id="home" href="/">Home</a>
+                <a class="nav-item nav-link" id="account" href="/account">Account</a>
                 <a class="nav-item nav-link" id="logout" href="/logout">Logout</a>
                 {% else %}
                 <a class="nav-item nav-link" id="login" href="/login">Login</a>
@@ -34,16 +36,16 @@
         {%for category, message in messages %}
         {% if category == 'success' %}
         <div class="alert alert-success alert-dismissible fade show" role="alert">
-            {{ messages }}
+            {{ message }}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
                 <span arial-hide="true"></span>
             </button>
         </div>
         {% else %}
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            {{ messages }}
+            {{ message }}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                <span arial-hide="true">&times;</span>
+                <span arial-hide="true"></span>
             </button>
         </div>
         {% endif %}
