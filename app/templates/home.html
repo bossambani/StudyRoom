@@ -1,9 +1,157 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Study Room</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+        .hero-section {
+            background-color: #007bff;
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+        .hero-section h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        .hero-section p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+        }
+        .hero-section a {
+            background-color: #ffffff;
+            color: #007bff;
+            padding: 10px 20px;
+            font-size: 1.25rem;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        .hero-section a:hover {
+            background-color: #f8f9fa;
+            color: #007bff;
+        }
+        .features-section {
+            padding: 40px 0;
+            text-align: center;
+        }
+        .features-section h2 {
+            margin-bottom: 40px;
+        }
+        .features-section .feature {
+            margin-bottom: 30px;
+        }
+        .testimonial-section {
+            background-color: #ffffff;
+            padding: 60px 0;
+            text-align: center;
+        }
+        .testimonial-section h2 {
+            margin-bottom: 40px;
+        }
+        .testimonial {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+        }
+        .testimonial p {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+        .testimonial h5 {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        .call-to-action {
+            background-color: #007bff;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+        .call-to-action h2 {
+            margin-bottom: 20px;
+        }
+        .call-to-action a {
+            background-color: #ffffff;
+            color: #007bff;
+            padding: 10px 30px;
+            font-size: 1.25rem;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        .call-to-action a:hover {
+            background-color: #f8f9fa;
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
 
-{% block title %}homepage{% endblock %}
-<h1> Home page</h1>
-{% block content %}
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <h1>Welcome to Study Room</h1>
+            <p>Your ultimate platform for collaborative learning and growth.</p>
+            <a href="#features">Learn More</a>
+        </div>
+    </section>
 
-<h1>home page</h1>
-<p>{{ user.username }}</p>
-{% endblock %}
+    <!-- Features Section -->
+    <section id="features" class="features-section">
+        <div class="container">
+            <h2>Why Choose Study Room?</h2>
+            <div class="row">
+                <div class="col-md-4 feature">
+                    <h4>Collaborative Learning</h4>
+                    <p>Join study rooms with like-minded peers and enhance your knowledge together.</p>
+                </div>
+                <div class="col-md-4 feature">
+                    <h4>Resource Sharing</h4>
+                    <p>Easily upload and access study materials, notes, and resources anytime.</p>
+                </div>
+                <div class="col-md-4 feature">
+                    <h4>Scheduled Meetings</h4>
+                    <p>Organize and attend meetings with your study groups at your convenience.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonial-section">
+        <div class="container">
+            <h2>What Our Users Say</h2>
+            <div class="row">
+                <div class="col-md-4 testimonial">
+                    <p>"Study Room has revolutionized the way I study. The collaborative tools are fantastic!"</p>
+                    <h5>- Jane Doe, Student</h5>
+                </div>
+                <div class="col-md-4 testimonial">
+                    <p>"I love the easy access to resources and the ability to connect with peers."</p>
+                    <h5>- John Smith, Learner</h5>
+                </div>
+                <div class="col-md-4 testimonial">
+                    <p>"The platform has made group projects so much easier. Highly recommend!"</p>
+                    <h5>- Sarah Lee, Graduate</h5>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section class="call-to-action">
+        <div class="container">
+            <h2>Join Study Room Today</h2>
+            <a href="/signup">Get Started</a>
+        </div>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

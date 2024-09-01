@@ -5,4 +5,4 @@ venv/
 *.sqlite3
 migrations/
 instance/
-#static/images/profile_pic/*
+static/images/profile_pic/*
