@@ -118,8 +118,6 @@ def account():
         username = request.form.get('username')
         profilepicture = request.files['profilepicture']
 
-        print(f"Email: {email}, Username: {username}, Profile Picture: {profilepicture}")
-
         # Validation checks
         if not email or not username:
             flash('Email and username are required', category='error')
@@ -145,6 +143,10 @@ def account():
         if profilepicture and allowed_file(profilepicture.filename):
             filename = save_picture(profilepicture)
             current_user.profilepicture = filename
+        else:
+            flash('File type not allowed. Please upload a PNG, JPG, JPEG, or GIF image.', category='error')
+            db.session.rollback()
+            return redirect(url_for('auth.account'))
 
         # Save changes to the database
         try:
@@ -162,5 +164,9 @@ def account():
     else:
         profilepicture = url_for('static', filename='images/profile_pic/default.jpg')
 
-    print(f"Profile Picture URL: {profilepicture}")
     return render_template('account.html', user=current_user, profilepicture=profilepicture)
+
+@auth.route('/dashboard')
+@login_required
+def dashboard():
+    return render_template("dashboard.html", user=current_user)

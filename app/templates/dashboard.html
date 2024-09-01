@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Study Room Dashboard</title>
+{% endblock %}
+
+{% block content %}
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-3 dashboard-sidebar mt-3" >
+                <h4 class="mb-4">Quick Links</h4>
+                <ul class="list-unstyled">
+                    <li><a href="#" class="btn btn-custom btn-block mb-2">Create Study Room</a></li>
+                    <li><a href="#" class="btn btn-custom btn-block mb-2">Upload Resources</a></li>
+                    <li><a href="#" class="btn btn-custom btn-block">Schedule Meeting</a></li>
+                </ul>
+            </div>
+            
+            <!-- Main Content -->
+            <div class="col-md-9 dashboard-main">
+                <div class="dashboard-header">
+                    <h1>Welcome back, {{user.username}}!</h1>
+                </div>
+                
+                <!-- Study Rooms Overview -->
+                <div class="card dashboard-card">
+                    <div class="card-header">
+                        <h4>Active Study Rooms</h4>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-unstyled">
+                            <li><strong>Study Room 1</strong> - 5 members</li>
+                            <li><strong>Study Room 2</strong> - 3 members</li>
+                            <li><strong>Study Room 3</strong> - 7 members</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Upcoming Events -->
+                <div class="card dashboard-card">
+                    <div class="card-header">
+                        <h4>Upcoming Events</h4>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-unstyled">
+                            <li><strong>Meeting with Group</strong> - Sept 15, 2024</li>
+                            <li><strong>Project Deadline</strong> - Sept 20, 2024</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Recent Activity -->
+                <div class="card dashboard-card">
+                    <div class="card-header">
+                        <h4>Recent Activity</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="recent-activity-item">
+                            <p><strong>Uploaded a new resource:</strong> Study Guide - Sept 10, 2024</p>
+                        </div>
+                        <div class="recent-activity-item">
+                            <p><strong>Message from Group:</strong> Check out the new assignment - Sept 12, 2024</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
