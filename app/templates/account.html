@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Account{% endblock %}
+
+{% block content %}
+
+<div class="content-section">
+    <form action="{{ url_for('auth.account') }}" method="post" class="p-4 rounded shadow bg-light mt-5" enctype="multipart/form-data">
+        <div class="media d-flex align-items-center">
+            <img class="rounded-circle account-img" src="{{ profilepicture }}" alt="Profile Picture">
+            <div class="media-body ms-3">
+                <h2 class="account-heading">{{ user.username }}</h2>
+                <p class="text-secondary">{{ user.email }}</p>
+            </div>
+        </div>
+        <div>
+            <h1>Account Info</h1>
+        </div>
+        <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" class="form-control" id="username" name="username" value="{{ user.username }}">
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" name="email" value="{{ user.email }}">
+        </div>
+        <div class="mb-3">
+            <label for="profilepicture" class="form-label">Profile Picture</label>
+            <input type="file" class="form-control" id="profilepicture" name="profilepicture">
+        </div>
+        <input type="submit" class="btn btn-primary w-100" value="Update">
+    </form>
+</div>
+
+{% endblock %}
