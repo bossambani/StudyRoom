@@ -28,7 +28,7 @@
 
 
 4. Run the Application
-    flask run
+    - flask run
 
 
 ## Usage
