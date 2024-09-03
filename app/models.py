@@ -34,14 +34,16 @@ class Message(db.Model):
         return f'<Message {self.body[:20]}>'
     
 class Resource(db.Model):
+    __tablename__ = 'resource'
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(100), nullable=False)
-    link = db.Column(db.String(100), nullable=False)
-    description = db.Column(db.Text)
-    type = db.Column(db.String(100))
-    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    filename = db.Column(db.String(255), nullable=False)
+    url = db.Column(db.String(255))
+    timestamp = db.Column(db.DateTime, default=datetime.utcnow)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    room_id = db.Column(db.Integer, db.ForeignKey('study_room.id'), nullable=False)
 
+   
+    room = db.relationship('StudyRoom', backref='resources')
     def __repr__(self):
         return f'<Resource {self.title}>'
         
@@ -66,20 +68,24 @@ class Notification(db.Model):
 
     def __repr__(self):
         return f'<Notification {self.message[:20]}>'
+    
+class StudyRoomMembers(db.Model):
+    __tablename__ = 'study_room_members'
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), primary_key=True)
+    study_room_id = db.Column(db.Integer, db.ForeignKey('study_room.id'), primary_key=True)
+    joined_at = db.Column(db.DateTime, default=datetime.utcnow)
 
-class StudyGroup(db.Model):
+
+class StudyRoom(db.Model):
+    __tablename__ = 'study_room'
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(80), nullable=False, unique=True)
-    description = db.Column(db.Text)
+    name = db.Column(db.String(100), nullable=False)
+    description = db.Column(db.String(255))
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
-    created_by = db.Column(db.Integer, db.ForeignKey('user.id'))
-
-    users = db.relationship('User', secondary='study_group_users', backref='study_groups')
-
+    owner_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    
+    
+    members = db.relationship('User', secondary='study_room_members', backref='study_rooms')
     def __repr__(self):
         return f'<StudyGroup {self.name}>'
 
-study_group_user = db.Table('study_group_users',
-    db.Column('user_id', db.Integer, db.ForeignKey('user.id'), primary_key=True),
-    db.Column('study_group_id', db.Integer, db.ForeignKey('study_group.id'), primary_key=True)
-)

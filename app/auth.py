@@ -1,12 +1,13 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash
 from app import db
-from app.models import User
+from app.models import User, StudyRoom
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, login_required, logout_user, current_user
 import os
 import secrets
 from flask import current_app as app
 from PIL import Image
+from flask import session, g
 
 auth = Blueprint('auth', __name__)
 
@@ -166,7 +167,43 @@ def account():
 
     return render_template('account.html', user=current_user, profilepicture=profilepicture)
 
+
+def generate_current_room():
+    """
+    Retrieves the current room based on the room_id stored in the session.
+    If the room_id is not in the session, it returns None.
+    """
+    room_id = session.get('room_id')
+
+    if room_id is None:
+        return None
+
+    # Assuming `StudyRoom` is your model for rooms
+    room = StudyRoom.query.get(room_id)
+
+    if room is None:
+        return None
+
+    # Optionally store the room in g (a global context for the request)
+    g.current_room = room
+    
+    return room
 @auth.route('/dashboard')
 @login_required
 def dashboard():
-    return render_template("dashboard.html", user=current_user)
+    room = generate_current_room()
+    if room is None:
+        app.logger.debug('Room not found')
+    return render_template("dashboard.html", user=current_user, room=room)
+
+
+@auth.route('/join_room/<int:room_id>')
+@login_required
+def join_room(room_id):
+    room = StudyRoom.query.get(room_id)
+    if room:
+        session['room_id'] = room.id
+        return redirect(url_for('dashboard'))
+    else:
+        flash('Room not found!', 'danger')
+        return redirect(url_for('dashboard'))
