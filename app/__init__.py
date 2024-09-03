@@ -14,11 +14,13 @@ def create_app():
 
     from app.views import views
     from app.auth import auth
+    from app.study_room import study_room
 
     app.register_blueprint(views, url_prefix='/')
     app.register_blueprint(auth, url_prefix='/')
+    app.register_blueprint(study_room, url_prefix='/study_room')
 
-    from app.models import User, Profile, StudyGroup, Resource, Notification, Message, study_group_user
+    from app.models import User, Profile, StudyRoom, Resource, Notification, Message, StudyRoomMembers
 
     create_database(app)
 

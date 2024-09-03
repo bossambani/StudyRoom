@@ -13,7 +13,13 @@
                 <h4 class="mb-4">Quick Links</h4>
                 <ul class="list-unstyled">
                     <li><a href="#" class="btn btn-custom btn-block mb-2">Create Study Room</a></li>
-                    <li><a href="#" class="btn btn-custom btn-block mb-2">Upload Resources</a></li>
+                    <li>
+                        {% if current_room %}
+                            <a href="{{ url_for('study_room.upload_resource', room_id=current_room.id) }}" class="btn btn-custom btn-block mb-2">Upload Resources</a>
+                        {% else %}
+                            <a href="#" class="btn btn-custom btn-block mb-2">No Room Selected</a>
+                        {% endif %}
+                    </li>
                     <li><a href="#" class="btn btn-custom btn-block">Schedule Meeting</a></li>
                 </ul>
             </div>
