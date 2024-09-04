@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome to Study Room</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <style>
         body {
             background-color: #f8f9fa;
@@ -63,6 +64,7 @@
         .testimonial p {
             font-size: 1.1rem;
             margin-bottom: 10px;
+            cursor: pointer;
         }
         .testimonial h5 {
             font-size: 1.2rem;
@@ -129,15 +131,15 @@
             <h2>What Our Users Say</h2>
             <div class="row">
                 <div class="col-md-4 testimonial">
-                    <p>"Study Room has revolutionized the way I study. The collaborative tools are fantastic!"</p>
+                    <p id="first">"Study Room has revolutionized...</p>
                     <h5>- Jane Doe, Student</h5>
                 </div>
                 <div class="col-md-4 testimonial">
-                    <p>"I love the easy access to resources and the ability to connect with peers."</p>
+                    <p id="second">"I love the easy access to..."</p>
                     <h5>- John Smith, Learner</h5>
                 </div>
                 <div class="col-md-4 testimonial">
-                    <p>"The platform has made group projects so much easier. Highly recommend!"</p>
+                    <p id="third">"The platform has made group..."</p>
                     <h5>- Sarah Lee, Graduate</h5>
                 </div>
             </div>
@@ -148,10 +150,48 @@
     <section class="call-to-action">
         <div class="container">
             <h2>Join Study Room Today</h2>
-            <a href="/signup">Get Started</a>
+            <a href="{{ url_for('auth.signup') }}">Get Started</a>
         </div>
     </section>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#first').on('click', function(){
+                var $this  = $(this);
+                $this.fadeOut(500, function() {
+                    $(this).text('"Study Room has revolutionized the way I study. The collaborative tools are fantastic!"').fadeIn(500);       
+                })
+                               
+            })
+            $('#second').on('click', function(){
+                var $this  = $(this);
+                $this.fadeOut(500, function() {
+                    $(this).text('"SI love the easy access to resources and the ability to connect with peers"').fadeIn(500);       
+                })
+                               
+            })
+            $('#third').on('click', function(){
+                var $this  = $(this);
+                $this.fadeOut(500, function() {
+                    $(this).text('"The platform has made group projects so much easier. Highly recommend!"').fadeIn(500);       
+                })
+                               
+            })
+            $('a[href="#features"]').on('click', function(event) {
+            event.preventDefault();
+            $('html, body').animate({
+                scrollTop: $('#features').offset().top
+            }, 800);
+
+            // After scrolling, show a message or additional info
+            setTimeout(function() {
+                alert("Discover how Study Room can help you collaborate, share resources, and schedule meetings effortlessly. Dive into the features below to learn more!");
+            }, 900);
+        });
+        
+        })
+
+    </script>
 </body>
 </html>
