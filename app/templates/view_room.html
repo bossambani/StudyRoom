@@ -1,0 +1,20 @@
+<!-- view_room.html -->
+ {% extends 'base.html' %}
+ {% block title %}View Room{% endblock %}
+ {% block content%}
+<h2>{{ room.name }}</h2>
+<p>{{ room.description }}</p>
+
+<h3>Participants</h3>
+<ul>
+    {% for member in room.members %}
+        <li>{{ member.username }}</li>
+    {% endfor %}
+</ul>
+
+<!-- Button to join the room -->
+<form action="{{ url_for('auth.join_room', room_id=room.id) }}" method="POST">
+    <button type="submit">Join Room</button>
+</form>
+
+{% endblock %}
