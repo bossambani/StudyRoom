@@ -82,9 +82,7 @@ class StudyRoom(db.Model):
     name = db.Column(db.String(100), nullable=False)
     description = db.Column(db.String(255))
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
-    owner_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    
-    
+    owner_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False) 
     members = db.relationship('User', secondary='study_room_members', backref='study_rooms')
     def __repr__(self):
         return f'<StudyGroup {self.name}>'

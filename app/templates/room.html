@@ -1,0 +1,34 @@
+<!-- view_room.html -->
+{% extends 'base.html' %}
+{% block title %}View Room{% endblock %}
+{% block content%}
+<h2>{{ room.name }}</h2>
+<p>{{ room.description }}</p>
+
+<h3>Participants</h3>
+<ul>
+   {% for member in room.members %}
+       <li>{{ member.username }}</li>
+   {% endfor %}
+</ul>
+
+<!-- Button to join the room -->
+<form action="{{ url_for('auth.join_room', room_id=room.id) }}" method="POST">
+   <button type="submit">Join Room</button>
+</form>
+
+<!-- Resource Sharing Section -->
+<h3>Shared Resources</h3>
+<ul>
+   {% for resource in room.resources %}
+       <li><a href="{{ url_for('static', filename=resource.filepath) }}" download>{{ resource.filename }}</a></li>
+   {% endfor %}
+</ul>
+
+<form action="{{ url_for('auth.upload_resource', room_id=room.id) }}" method="POST" enctype="multipart/form-data">
+   <input type="file" name="resource">
+   <button type="submit">Upload Resource</button>
+</form>
+
+
+{% endblock %}

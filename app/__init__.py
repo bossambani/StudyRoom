@@ -11,7 +11,14 @@ def create_app():
     # Securely set the secret key; consider setting this from an environment variable for production
     app.config['SECRET_KEY'] = os.urandom(24)  # Change this to a fixed key in production
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{db_Name}'
-    
+
+       # Configure the upload folder
+    app.config['UPLOAD_FOLDER'] = os.path.join(os.getcwd(), 'uploads')
+
+    # Ensure the upload directory exists
+    if not os.path.exists(app.config['UPLOAD_FOLDER']):
+        os.makedirs(app.config['UPLOAD_FOLDER'])
+
     # Initialize extensions
     db.init_app(app)
     
@@ -45,4 +52,4 @@ def create_database(app):
     if not os.path.exists('app/' + db_Name):
         with app.app_context():
             db.create_all()
-            print('Created Database!')
+            

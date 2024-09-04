@@ -1,0 +1,14 @@
+<!-- create_room.html -->
+ {% extends 'base.html' %}
+ {% block title %}Create Room{% endblock %}
+
+{% block content %}
+
+<form method="POST">
+    <h2>Create Study Room</h2>
+    <input type="text" name="name" placeholder="Room Name" required>
+    <textarea name="description" placeholder="Room Description"></textarea>
+    <button type="submit">Create Room</button>
+</form>
+
+{% endblock %}
