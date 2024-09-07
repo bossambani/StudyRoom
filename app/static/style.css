@@ -33,7 +33,7 @@ body {
     background-color: #f0f2f5;
 }
 .dashboard-header {
-    background-color: #007bff;
+    background-color: #008080;
     color: white;
     padding: 20px;
     border-radius: 0.5rem;
@@ -55,7 +55,7 @@ body {
     padding: 20px;
 }
 .card-header {
-    background-color: #007bff;
+    background-color: #008080;
     color: white;
     border-bottom: 1px solid #dee2e6;
 }
@@ -63,12 +63,12 @@ body {
     background-color: #ffffff;
 }
 .btn-custom {
-    background-color: #007bff;
+    background-color: #008080;
     color: white;
     border: none;
 }
 .btn-custom:hover {
-    background-color: #0056b3;
+    background-color: #006666;
     color: white;
 }
 .recent-activity-item {
