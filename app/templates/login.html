@@ -26,7 +26,24 @@
         <a href="{{ url_for('auth.forgot_password') }}">Forgot your password?</a>
     </div>
 
-    <input type="submit" class="btn btn-primary w-100" value="Login" >
+    <style>
+        :root {
+          --bs-teal: #008080; 
+        }
+      
+        .btn-teal {
+          color: #ffffff; 
+          background-color: var(--bs-teal); 
+          border: 1px solid var(--bs-teal); 
+        }
+      
+        .btn-teal:hover {
+          background-color: #006666; 
+          border-color: #006666; 
+        }
+    </style>
+
+    <input type="submit" class="btn btn-teal w-100" value="Login" >
 
     <!-- "Don't have an account?" Link -->
     <p class="signup-link">
