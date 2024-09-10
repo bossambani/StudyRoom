@@ -180,92 +180,22 @@ def generate_current_room():
     if room_id is None:
         return None
 
-    # Assuming `StudyRoom` is your model for rooms
     room = StudyRoom.query.get(room_id)
 
     if room is None:
         return None
 
-    # Optionally store the room in g (a global context for the request)
     g.current_room = room
     
     return room
 @auth.route('/dashboard')
 @login_required
 def dashboard():
-    room = generate_current_room()
+    room = generate_current_room()  # This fetches the current room, if any
+    study_rooms = StudyRoom.query.all()  # Fetch the list of all study rooms
     if room is None:
         app.logger.debug('Room not found')
-    return render_template("dashboard.html", user=current_user, room=room)
+    return render_template("dashboard.html", user=current_user, current_room=room, study_rooms=study_rooms)
 
 
 
-@auth.route('/create-room', methods=['GET', 'POST'])
-@login_required
-def create_room():
-    if request.method == 'POST':
-        room_name = request.form['name']
-        description = request.form.get('description')
-        new_room = StudyRoom(name=room_name, description=description, owner_id=current_user.id)
-        db.session.add(new_room)
-        db.session.commit()
-        flash('Study room created successfully!', 'success')
-        return redirect(url_for('auth.view_room', room_id=new_room.id))
-    return render_template('create_room.html', user=current_user)
-
-@auth.route('/rooms/<int:room_id>', methods=['GET', 'POST'])
-@login_required
-def view_room(room_id):
-    room = StudyRoom.query.get_or_404(room_id)
-    if request.method == 'POST':
-        # Logic to manage room (e.g., adding/removing participants)
-        pass
-    return render_template('view_room.html', room=room, user=current_user)
-
-@auth.route('/join-room/<int:room_id>', methods=['POST'])
-@login_required
-def join_room(room_id):
-    room = StudyRoom.query.get_or_404(room_id)
-    if current_user not in room.members:
-        room.members.append(current_user)
-        db.session.commit()
-        flash('You have joined the room!', 'success')
-        return render_template('room.html', room=room, user=current_user)
-    #return redirect(url_for('auth.view_room', room_id=room.id))
-
-@auth.route('/leave-room/<int:room_id>', methods=['POST'])
-@login_required
-def leave_room(room_id):
-    room = StudyRoom.query.get_or_404(room_id)
-    if current_user in room.members:
-        room.members.remove(current_user)
-        db.session.commit()
-        flash('You have left the room!', 'success')
-    return redirect(url_for('auth.view_room', room_id=room.id))
-
-@auth.route('/room/<int:room_id>/upload', methods=['POST'])
-@login_required
-def upload_resource(room_id):
-    room = StudyRoom.query.get_or_404(room_id)
-    resource = Resource()
-    file = request.files['resource']
-    if file:
-        filename = secure_filename(file.filename)
-        filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-        file.save(filepath)
-        resource = resource(filename=filename, filepath=filepath, room=room)
-        db.session.add(resource)
-        db.session.commit()
-        flash('Resource uploaded successfully!')
-    return redirect(url_for('auth.view_room', room_id=room_id))
-
-#@auth.route('/join_room/<int:room_id>')
-#@login_required
-#def join_room(room_id):
-#   room = StudyRoom.query.get(room_id)
-#   if room:
-#        session['room_id'] = room.id
- #       return redirect(url_for('dashboard'))
-  #  else:
-   #     flash('Room not found!', 'danger')
-    #    return redirect(url_for('dashboard'))

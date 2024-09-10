@@ -9,10 +9,10 @@ Study Room Dashboard
     <div class="container-fluid">
         <div class="row">
             <!-- Sidebar -->
-            <div class="col-md-3 dashboard-sidebar mt-3" >
+            <div class="col-md-3 dashboard-sidebar mt-3">
                 <h4 class="mb-4">Quick Links</h4>
                 <ul class="list-unstyled">
-                    <li><a href="{{ url_for('auth.create_room') }}" class="btn btn-custom btn-block mb-2">Create Study Room</a></li>
+                    <li><a href="{{ url_for('study_room.create_room') }}" class="btn btn-custom btn-block mb-2">Create Study Room</a></li>
                     <li>
                         {% if current_room %}
                             <a href="{{ url_for('study_room.upload_resource', room_id=current_room.id) }}" class="btn btn-custom btn-block mb-2">Upload Resources</a>
@@ -27,7 +27,7 @@ Study Room Dashboard
             <!-- Main Content -->
             <div class="col-md-9 dashboard-main">
                 <div class="dashboard-header">
-                    <h1>Welcome back, {{user.username}}!</h1>
+                    <h1>Welcome back, {{ user.username }}!</h1>
                 </div>
                 
                 <!-- Study Rooms Overview -->
@@ -36,11 +36,19 @@ Study Room Dashboard
                         <h4>Active Study Rooms</h4>
                     </div>
                     <div class="card-body">
-                        <ul class="list-unstyled">
-                            <li><strong>Study Room 1</strong> - 5 members</li>
-                            <li><strong>Study Room 2</strong> - 3 members</li>
-                            <li><strong>Study Room 3</strong> - 7 members</li>
-                        </ul>
+                        {% if study_rooms %}
+                            <ul class="list-unstyled">
+                                {% for room in study_rooms %}
+                                    <li><strong>{{ room.name }}</strong> - {{ room.member_count }} members</li>
+                                    <form action="{{ url_for('study_room.join_room', room_id=room.id) }}" method="POST">
+                                        <button type="submit" class="btn btn-primary btn-sm">Join Room</button>
+                                    </form>
+                                    
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            <p>No active study rooms available.</p>
+                        {% endif %}
                     </div>
                 </div>
                 
