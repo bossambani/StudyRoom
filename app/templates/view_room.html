@@ -1,20 +1,60 @@
-<!-- view_room.html -->
- {% extends 'base.html' %}
- {% block title %}View Room{% endblock %}
- {% block content%}
-<h2>{{ room.name }}</h2>
-<p>{{ room.description }}</p>
+{% extends 'base.html' %}
+{% block title %}View Room{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <h2>{{ room.name }}</h2>
+    <p>{{ room.description }}</p>
 
-<h3>Participants</h3>
-<ul>
-    {% for member in room.members %}
-        <li>{{ member.username }}</li>
-    {% endfor %}
-</ul>
+    <!-- Participants Section -->
+    <h3>Participants</h3>
+    <ul class="list-group mb-4">
+        {% for member in room.members %}
+            <li class="list-group-item">{{ member.username }}</li>
+        {% endfor %}
+    </ul>
 
-<!-- Button to join the room -->
-<form action="{{ url_for('auth.join_room', room_id=room.id) }}" method="POST">
-    <button type="submit">Join Room</button>
-</form>
+    <!-- Add/Remove Participants Section -->
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <h4>Add Participant</h4>
+            <form method="POST" action="{{ url_for('study_room.view_room', room_id=room.id) }}">
+                <input type="hidden" name="action" value="add">
+                <div class="form-group">
+                    <label for="add-user">Select User:</label>
+                    <select id="add-user" name="user_id" class="form-control">
+                        {% for user in available_users %}
+                            <option value="{{ user.id }}">{{ user.username }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary mt-2">Add Participant</button>
+            </form>
+        </div>
+        <div class="col-md-6">
+            <h4>Remove Participant</h4>
+            <form method="POST" action="{{ url_for('study_room.view_room', room_id=room.id) }}">
+                <input type="hidden" name="action" value="remove">
+                <div class="form-group">
+                    <label for="remove-user">Select User:</label>
+                    <select id="remove-user" name="user_id" class="form-control">
+                        {% for user in room.participants %}
+                            <option value="{{ user.id }}">{{ user.username }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-danger mt-2">Remove Participant</button>
+            </form>
+        </div>
+    </div>
 
+    <!-- Video Communication Section -->
+    <h3>Live Video Collaboration</h3>
+    <div id="video-container" class="mb-4" style="width: 100%; height: 500px;">
+        <iframe
+            allow="camera; microphone; fullscreen; display-capture"
+            src="https://meet.jit.si/{{ room.name }}"
+            style="width: 100%; height: 100%; border: 0;">
+        </iframe>
+    </div>
+</div>
 {% endblock %}

@@ -12,11 +12,15 @@
             font-family: Arial, sans-serif;
         }
         .hero-section {
-            background-color: #007bff;
-            color: white;
-            padding: 60px 0;
-            text-align: center;
+             background: url('static/studyRoomImage.jpg') center/cover no-repeat;
+             height: 100vh;
+             color: white;
+             text-align: center;
+             display: flex;
+             justify-content: center;
+             align-items: center;
         }
+
         .hero-section h1 {
             font-size: 3rem;
             margin-bottom: 20px;
@@ -100,7 +104,7 @@
         <div class="container">
             <h1>Welcome to Study Room</h1>
             <p>Your ultimate platform for collaborative learning and growth.</p>
-            <a href="#features">Learn More</a>
+            <a href="#features" aria-label="Learn more about study Room features ">Learn More</a>
         </div>
     </section>
 
@@ -150,7 +154,7 @@
     <section class="call-to-action">
         <div class="container">
             <h2>Join Study Room Today</h2>
-            <a href="{{ url_for('auth.signup') }}">Get Started</a>
+            <a href="{{ url_for('auth.signup') }}" aria-label="Sign up for Study Room">Get Started</a>
         </div>
     </section>
 
@@ -167,7 +171,7 @@
             $('#second').on('click', function(){
                 var $this  = $(this);
                 $this.fadeOut(500, function() {
-                    $(this).text('"SI love the easy access to resources and the ability to connect with peers"').fadeIn(500);       
+                    $(this).text('"I love the easy access to resources and the ability to connect with peers"').fadeIn(500);       
                 })
                                
             })
