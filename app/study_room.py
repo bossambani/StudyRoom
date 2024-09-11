@@ -95,6 +95,7 @@ def join_room(room_id):
         room.members.append(current_user)
         db.session.commit()
         flash('You have joined the room!', 'success')
+        return redirect(url_for('study_room.view_room', room_id=room.id))
     else:
         flash('You are already a member of this room!', 'warning')
     return redirect(url_for('auth.dashboard'))

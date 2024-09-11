@@ -1,5 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash
-from app import db
+from app import db, mail
+from flask_mail import Message
+from itsdangerous import URLSafeTimedSerializer, SignatureExpired, BadSignature
 from app.models import User, StudyRoom, Resource
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, login_required, logout_user, current_user
@@ -88,11 +90,58 @@ def signup():
 
     return render_template('signup.html', user=current_user)
 
-#Modification required
-@auth.route('/forgot-password', methods=['GET', 'POST'])
-def forgot_password():
-    return render_template('forgot-password.html')
+def get_serializer():
+    return URLSafeTimedSerializer(app.config['SECRET_KEY'])
 
+@auth.route('/forgot_password', methods=['GET', 'POST'])
+def forgot_password():
+    if request.method == 'POST':
+        email = request.form.get('email')
+        user = User.query.filter_by(email=email).first()
+        serializer = get_serializer()
+        if user:
+            token = serializer.dumps(email, salt='password-reset-salt')
+            reset_url = url_for('auth.reset_password', token=token, _external=True)
+            # Send the email
+            msg = Message('Password Reset Request', recipients=[user.email])
+            msg.body = f'Click the link below to reset your password: {reset_url}'
+            mail.send(msg)
+            flash('Password reset link sent to your email. Please check your email.', 'success')
+        else:
+            flash('Email not found in our records.', 'danger')
+        return redirect(url_for('auth.login'))
+    return render_template('forgot-password.html', user=current_user)
+
+def verify_reset_token(token):
+    serializer = get_serializer()
+    try:
+        email = serializer.loads(token, salt='password-reset-salt', max_age=3600)
+    except (SignatureExpired, BadSignature) as e:
+        # Log the exception if needed
+        return None
+    return email
+
+@auth.route('/reset_password/<token>', methods=['GET', 'POST'])
+def reset_password(token):
+    email = verify_reset_token(token)
+    if not email:
+        flash('The reset token is invalid or has expired.', 'warning')
+        return redirect(url_for('auth.forgot_password'))
+
+    if request.method == 'POST':
+        password = request.form.get('password')
+        confirm_password = request.form.get('confirm_password')
+        if password != confirm_password:
+            flash('Passwords do not match.', 'danger')
+            return redirect(url_for('auth.reset_password', token=token))
+        else:
+            user = User.query.filter_by(email=email).first()
+            user.password = generate_password_hash(password, method='pbkdf2:sha256', salt_length=8)
+            db.session.commit()
+            flash('Password reset successfully. You can now login.', 'success')
+            return redirect(url_for('auth.login'))
+
+    return render_template('reset_password.html', user=current_user, token=token)
 
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 

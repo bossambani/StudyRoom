@@ -2,25 +2,34 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 import os
 from flask_login import LoginManager
+from flask_mail import Mail
 
 db = SQLAlchemy()
 db_Name = "app.db"
+mail = Mail()
 
 def create_app():
     app = Flask(__name__)
-    # Securely set the secret key; consider setting this from an environment variable for production
-    app.config['SECRET_KEY'] = os.urandom(24)  # Change this to a fixed key in production
+    app.config['SECRET_KEY'] = os.urandom(24)
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{db_Name}'
 
-       # Configure the upload folder
+    #Email configuration 
+    app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+    app.config['MAIL_PORT'] = 587
+    app.config['MAIL_USE_TLS'] = True
+    app.config['MAIL_USERNAME'] = 'bossambaka@gmail.com'
+    app.config['MAIL_PASSWORD'] = 'aehp nucu zoan evkc'
+    app.config['MAIL_DEFAULT_SENDER'] = 'bossambaka@gmail.com'
+
+    mail.init_app(app)
+    db.init_app(app)
+
+
     app.config['UPLOAD_FOLDER'] = os.path.join(os.getcwd(), 'uploads')
 
-    # Ensure the upload directory exists
     if not os.path.exists(app.config['UPLOAD_FOLDER']):
         os.makedirs(app.config['UPLOAD_FOLDER'])
 
-    # Initialize extensions
-    db.init_app(app)
     
     # Register blueprints
     from app.views import views
