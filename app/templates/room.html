@@ -2,6 +2,12 @@
 {% extends 'base.html' %}
 {% block title %}View Room{% endblock %}
 {% block content%}
+<style>
+    body {
+        background: url('/static/studyRoomImage3.jpg') center/cover no-repeat;
+        height: 100vh; 
+    }
+</style>
 <h2>{{ room.name }}</h2>
 <p>{{ room.description }}</p>
 
@@ -12,10 +18,11 @@
    {% endfor %}
 </ul>
 
-<!-- Button to join the room -->
+<!-- I dont think there should be a button in this page -->
+<!-- Button to join the room
 <form action="{{ url_for('auth.join_room', room_id=room.id) }}" method="POST">
    <button type="submit">Join Room</button>
-</form>
+</form> -->
 
 <!-- Resource Sharing Section -->
 <h3>Shared Resources</h3>
