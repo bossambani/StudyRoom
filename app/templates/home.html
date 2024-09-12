@@ -129,6 +129,63 @@
             </div>
         </div>
     </section>
+    <!-- About Section -->
+<section id="about" class="py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h2>About</h2>
+                <p class="lead mt-3" id="about-text">
+                    This project was inspired by the need for effective virtual collaboration and study environments, especially in the digital age where remote learning has become crucial.Our goal was to
+                    <span id="more-text" style="display: none;">
+                        create a platform that allows students to connect, share resources, and collaborate in real-time. This idea emerged from personal experiences with the challenges of remote studying.
+                    </span>
+                </p>
+                <a href="javascript:void(0)" id="read-more">Read More</a>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <!-- Team Member 1 -->
+            <div class="col-md-4 text-center">
+                <h4>Team Member 1</h4>
+                <ul class="list-unstyled">
+                    <li><a href="https://www.linkedin.com/in/boss-ambaka-261136291/" target="_blank">LinkedIn</a></li>
+                    <li><a href="https://github.com/bossambani" target="_blank">GitHub</a></li>
+                    <li><a href="https://x.com/Bossieambaka" target="_blank">Twitter</a></li>
+                </ul>
+            </div>
+            <!-- Team Member 2 -->
+            <div class="col-md-4 text-center">
+                <h4>Team Member 2</h4>
+                <ul class="list-unstyled">
+                    <li><a href="#" target="_blank">LinkedIn</a></li>
+                    <li><a href="#" target="_blank">GitHub</a></li>
+                    <li><a href="#" target="_blank">Twitter</a></li>
+                </ul>
+            </div>
+            <!-- Team Member 3 -->
+            <div class="col-md-4 text-center">
+                <h4>Team Member 3</h4>
+                <ul class="list-unstyled">
+                    <li><a href="#" target="_blank">LinkedIn</a></li>
+                    <li><a href="#" target="_blank">GitHub</a></li>
+                    <li><a href="#" target="_blank">Twitter</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <div class="col-md-12 text-center">
+                <h4>Project Repository</h4>
+                <p>
+                    You can find the source code for this project on our <a href="https://github.com/bossambani/StudyRoom" target="_blank">GitHub repository</a>.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
 
     <!-- Testimonials Section -->
     <section class="testimonial-section">
@@ -183,6 +240,18 @@
                 })
                                
             })
+            $('#read-more').on('click', function() {
+            var moreText = $('#more-text');
+            if (moreText.is(':visible')) {
+                moreText.slideUp();
+                $(this).text('Read More');
+            } else {
+                moreText.slideDown();
+                $(this).text('Read Less');
+            }
+        });
+                               
+        
             $('a[href="#features"]').on('click', function(event) {
             event.preventDefault();
             $('html, body').animate({
