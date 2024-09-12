@@ -11,7 +11,7 @@ mail = Mail()
 def create_app():
     app = Flask(__name__)
     app.config['SECRET_KEY'] = os.urandom(24)
-    app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{db_Name}'
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL', 'sqlite:///{db_Name}')
 
     #Email configuration 
     app.config['MAIL_SERVER'] = 'smtp.gmail.com'
