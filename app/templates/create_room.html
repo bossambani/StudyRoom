@@ -1,21 +1,21 @@
 <!-- create_room.html -->
- {% extends 'base.html' %}
- {% block title %}Create Room{% endblock %}
+{% extends 'base.html' %}
+{% block title %}Create Room{% endblock %}
 
 {% block content %}
 
 <div class="container">
-    <div class="row">
-        <div class="col-md-6 offset-md-3">
+   <div class="row">
+       <div class="col-md-6 offset-md-3">
 <form method="POST" class="p-4 rounded shadow bg-light mt-3">
-    <h2>Create Study Room</h2>
-    <div class="mb-3">
-    <input type="text" class="form-control"  name="name" placeholder="Room Name" required>
-    </div>
-    <div class="mb-3">
-    <textarea name="description" class="form-data" cols="60" rows="4" placeholder="Room Description"></textarea>
-    </div>
-    <button type="submit" class="btn btn-primary w-100">Create Room</button>
+   <h2>Create Study Room</h2>
+   <div class="mb-3">
+   <input type="text" class="form-control"  name="name" placeholder="Room Name" required>
+   </div>
+   <div class="mb-3">
+   <textarea name="description" class="form-data" cols="60" rows="4" placeholder="Room Description"></textarea>
+   </div>
+   <button type="submit" class="btn btn-primary w-100">Create Room</button>
 </form>
 </div>
 </div>
