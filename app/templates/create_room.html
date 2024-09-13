@@ -13,12 +13,30 @@
    <input type="text" class="form-control"  name="name" placeholder="Room Name" required>
    </div>
    <div class="mb-3">
-   <textarea name="description" class="form-data" cols="60" rows="4" placeholder="Room Description"></textarea>
+   <textarea name="description" class="form-data" cols="62" rows="4" placeholder="Room Description"></textarea>
    </div>
-   <button type="submit" class="btn btn-primary w-100">Create Room</button>
+   <style>
+       :root {
+         --bs-teal: #008080; 
+       }
+     
+       .btn-teal {
+         color: #ffffff; 
+         background-color: var(--bs-teal); 
+         border: 1px solid var(--bs-teal); 
+       }
+     
+       .btn-teal:hover {
+         background-color: #006666; 
+         border-color: #0000; 
+       }
+   </style>
+   <button type="submit" class="btn btn-teal w-100">Create Room</button>
 </form>
 </div>
 </div>
 </div>
+
+{% endblock %}
 
 {% endblock %}
