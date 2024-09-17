@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}{{ room.name }} Resources{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <h2>{{ room.name }} - Resources</h2>
+    <ul class="list-group">
+        {% for resource in resources %}
+            <li class="list-group-item">
+                <a href="{{ resource.url }}" target="_blank">{{ resource.name }}</a>
+            </li>
+        {% else %}
+            <li class="list-group-item">No resources available.</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

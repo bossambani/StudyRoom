@@ -16,8 +16,10 @@ Study Room Dashboard
                     <li>
                         {% if current_room %}
                             <a href="{{ url_for('study_room.upload_resource', room_id=current_room.id) }}" class="btn btn-custom btn-block mb-2">Upload Resources</a>
+                            <a href="{{ url_for('study_room.view_resources', room_id=current_room.id) }}" class="btn btn-custom btn-block mb-2">View Resources</a>
                         {% else %}
-                            <a href="#" class="btn btn-custom btn-block mb-2">No Room Selected</a>
+                        <p class="text-muted">No current room selected. Join or create a room to view or upload resources.</p>
+
                         {% endif %}
                     </li>
                     <li><a href="#" class="btn btn-custom btn-block">Schedule Meeting</a></li>

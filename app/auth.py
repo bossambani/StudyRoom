@@ -240,8 +240,8 @@ def generate_current_room():
 @auth.route('/dashboard')
 @login_required
 def dashboard():
-    room = generate_current_room()  # This fetches the current room, if any
-    study_rooms = StudyRoom.query.all()  # Fetch the list of all study rooms
+    room = generate_current_room() 
+    study_rooms = StudyRoom.query.all() 
     if room is None:
         app.logger.debug('Room not found')
     return render_template("dashboard.html", user=current_user, current_room=room, study_rooms=study_rooms)

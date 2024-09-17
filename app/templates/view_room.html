@@ -66,4 +66,20 @@
     </form>
 
 </div>
+
+<div class="container">
+    <button class="btn btn-primary mb-2">
+        <h4>
+            <a href="{{ url_for('study_room.view_resources', room_id=room.id) }}"
+            style="text-decoration: none; color: white;">View Resources</a>
+        </h4>
+        <button class="btn btn-primary">
+            <h4>
+                <a href="{{ url_for('study_room.upload_resource', room_id=room.id) }}"
+                style="text-decoration: none; color: white;">Upload Resources</a>
+            </h4>
+        </button>
+    </button>
+</div>
+
 {% endblock %}
