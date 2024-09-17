@@ -38,7 +38,7 @@ def upload_resource(room_id):
             flash('Resource uploaded successfully', 'success')
             return redirect(url_for('study_room.view_room', room_id=room.id))
 
-    return render_template('Resource.html', form=form, room=room)
+    return render_template('Resource.html', form=form, room=room, user=current_user)
 
 # Route to create a study room
 @study_room.route('/create-room', methods=['GET', 'POST'])
@@ -97,8 +97,8 @@ def join_room(room_id):
         flash('You have joined the room!', 'success')
         return redirect(url_for('study_room.view_room', room_id=room.id))
     else:
-        flash('You are already a member of this room!', 'warning')
-    return redirect(url_for('auth.dashboard'))
+       flash('You are already a member of this room!', 'warning')
+    return redirect(url_for('study_room.view_room', room_id=room.id))
 
 # Route to leave a room
 @study_room.route('/leave-room/<int:room_id>', methods=['POST'])
@@ -110,3 +110,19 @@ def leave_room(room_id):
         db.session.commit()
         flash('You have left the room!', 'success')
     return redirect(url_for('study_room.view_room', room_id=room.id))
+
+@study_room.route('/resources/<int:room_id>')
+@login_required
+def view_resources(room_id):
+    room = StudyRoom.query.get_or_404(room_id)
+    resources = Resource.query.filter_by(room_id=room_id).all()
+    return render_template('view_resources.html', resources=resources, room=room, user=current_user)
+
+@study_room.route('/delete-resource/<int:resource_id>', methods=['POST'])
+@login_required
+def delete_resource(resource_id):
+    resource = Resource.query.get_or_404(resource_id)
+    db.session.delete(resource)
+    db.session.commit()
+    flash('Resource deleted successfully', 'success')
+    return redirect(url_for('study_room.view_room', room_id=resource.room_id))
