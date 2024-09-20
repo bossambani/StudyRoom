@@ -80,6 +80,30 @@ StudyRoom is a virtual platform where students can create and join study rooms, 
 - Manage room participants
 - Resource organization per room
 
+## API Documentation
+The StudyRoom platform also provides a REST API for developers to interact with the system programmatically.
+
+### Endpoints:
+
+1. **User Authentication:**
+   - **POST** `/api/v1/auth/signup` – Register a new user
+   - **POST** `/api/v1/auth/login` – Log in an existing user
+
+2. **Study Room Management:**
+   - **GET** `/api/v1/rooms` – Get a list of study rooms
+   - **POST** `/api/v1/rooms` – Create a new study room
+   - **GET** `/api/v1/rooms/<room_id>` – Get details of a specific room
+
+3. **Resource Management:**
+   - **POST** `/api/v1/rooms/<room_id>/upload` – Upload a resource to a room
+   - **GET** `/api/v1/rooms/<room_id>/resources` – List resources in a room
+
+4. **Chat:**
+   - **GET** `/api/v1/rooms/<room_id>/chat` – Get chat messages for a room
+   - **POST** `/api/v1/rooms/<room_id>/chat` – Post a chat message to a room
+
+For more detailed API documentation, refer to the [API Documentation](API.md) file.
+
 ## Contributing
 We welcome contributions to StudyRoom! Here's how you can contribute:
 
