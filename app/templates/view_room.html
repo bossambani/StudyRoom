@@ -2,8 +2,9 @@
 {% block title %}View Room{% endblock %}
 {% block content %}
 <div class="container mt-4">
-    <h2>{{ room.name }}</h2>
-    <p>{{ room.description }}</p>
+    <!-- Room Name and Description -->
+    <h2 class="mb-3">{{ room.name }}</h2>
+    <p class="text-muted">{{ room.description }}</p>
 
     <!-- Button to leave the room -->
     <form action="{{ url_for('study_room.leave_room', room_id=room.id) }}" method="POST">
@@ -11,10 +12,15 @@
     </form>
 
     <!-- Participants Section -->
-    <h3>Participants</h3>
+    <h3 class="mt-4">Participants</h3>
     <ul class="list-group mb-4">
         {% for member in room.members %}
-            <li class="list-group-item">{{ member.username }}</li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                {{ member.username }}
+                <span class="badge badge-primary badge-pill">Participant</span>
+            </li>
+        {% else %}
+            <li class="list-group-item text-muted">No participants yet.</li>
         {% endfor %}
     </ul>
 
@@ -22,8 +28,9 @@
     {% if room.owner_id == current_user.id %}
     <!-- Add/Remove Participants Section -->
     <div class="row mb-4">
+        <!-- Add Participant Section -->
         <div class="col-md-6">
-            <h4>Add Participant</h4>
+            <h4 class="mb-3">Add Participant</h4>
             <form method="POST" action="{{ url_for('study_room.view_room', room_id=room.id) }}">
                 <input type="hidden" name="action" value="add">
                 <div class="form-group">
@@ -32,25 +39,31 @@
                         <option disabled selected>Select User</option>
                         {% for user in available_users %}
                             <option value="{{ user.id }}">{{ user.username }}</option>
+                        {% else %}
+                            <option disabled>No available users to add</option>
                         {% endfor %}
                     </select>
                 </div>
-                <button type="submit" class="btn btn-primary mt-2">Add Participant</button>
+                <button type="submit" class="btn btn-primary mt-2 btn-block">Add Participant</button>
             </form>
         </div>
+
+        <!-- Remove Participant Section -->
         <div class="col-md-6">
-            <h4>Remove Participant</h4>
+            <h4 class="mb-3">Remove Participant</h4>
             <form method="POST" action="{{ url_for('study_room.view_room', room_id=room.id) }}">
                 <input type="hidden" name="action" value="remove">
                 <div class="form-group">
                     <label for="remove-user">Select User:</label>
                     <select id="remove-user" name="user_id" class="form-control">
-                        {% for user in room.participants %}
+                        {% for user in room.members %}
                             <option value="{{ user.id }}">{{ user.username }}</option>
+                        {% else %}
+                            <option disabled>No participants to remove</option>
                         {% endfor %}
                     </select>
                 </div>
-                <button type="submit" class="btn btn-danger mt-2">Remove Participant</button>
+                <button type="submit" class="btn btn-danger mt-2 btn-block">Remove Participant</button>
             </form>
         </div>
     </div>
@@ -70,6 +83,12 @@
             style="width: 100%; height: 100%; border: 0;">
         </iframe>
     </div>
+  
+    <!-- Button to Join the Room -->
+    <form action="{{ url_for('study_room.join_room', room_id=room.id) }}" method="POST">
+        <button type="submit" class="btn btn-success btn-block">Join Room</button>
+    </form>
+
 </div>
 
 <div class="row mb-4">

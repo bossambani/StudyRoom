@@ -62,6 +62,12 @@ body {
 .card-body {
     background-color: #ffffff;
 }
+.card-body .btn-custom {
+    background-color: #008080;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
 .btn-custom {
     background-color: #008080;
     color: white;
@@ -77,4 +83,10 @@ body {
 }
 .recent-activity-item:last-child {
     border-bottom: none;
+}
+
+/*create_room.html*/
+.form-data {
+    border-radius: 5px;
+    margin: 0px 5px;
 }

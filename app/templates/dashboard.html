@@ -43,7 +43,7 @@ Study Room Dashboard
                                 {% for room in study_rooms %}
                                     <li><strong>{{ room.name }}</strong> - {{ room.member_count }} members</li>
                                     <form action="{{ url_for('study_room.join_room', room_id=room.id) }}" method="POST">
-                                        <button type="submit" class="btn btn-primary btn-sm">Join Room</button>
+                                        <button type="submit" class="btn-custom btn-sm">Join Room</button>
                                     </form>
                                     
                                 {% endfor %}
