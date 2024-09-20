@@ -32,9 +32,9 @@ def create_app():
 
     
     # Register blueprints
-    from app.views import views
-    from app.auth import auth
-    from app.study_room import study_room
+    from api.v1.views import views
+    from api.v1.auth import auth
+    from api.v1.study_room import study_room
     app.register_blueprint(views, url_prefix='/')
     app.register_blueprint(auth, url_prefix='/')
     app.register_blueprint(study_room, url_prefix='/study_room')
