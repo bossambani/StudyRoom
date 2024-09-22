@@ -23,8 +23,16 @@
              display: flex;
              justify-content: center;
              align-items: center;
+             background-size: cover;
         }
 
+        @media (max-width: 767px) {
+            .hero-section {
+            background-position: top;
+            padding-top: 80px;
+            height: 100vh;
+            }
+        }
         .hero-section h1 {
             font-size: 3rem;
             margin-bottom: 20px;
@@ -100,12 +108,19 @@
             background-color: #f8f9fa;
             color: #007bff;
         }
+        .mb-0 {
+            color: #007bff;
+        }
     </style>
 </head>
 <body>
 
     <header class="text-center p-3 d-flex justify-content-between align-items-center">
         <img src="{{ url_for('static', filename='images/StudyHub-logo.jpeg') }}" alt="Study Room Logo" class="img-fluid" style="max-width: 100px; border-radius: 50px;">
+        <!-- Tagline -->
+        <div class="ms-3">
+            <h2 class="mb-0" style="font-size: 1.5rem; font-weight: bold;">Study Smart Together</h2>
+        </div>
         <nav class="d-flex">
             <ul class="nav list-unstyled">
                 <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
@@ -114,7 +129,7 @@
             </ul>
         </nav>
         <div class="header-actions">
-            <a href="{{ url_for('auth.signup') }}" class="btn btn-primary me-2">Sign Up</a>
+            <a href="{{ url_for('auth.signup') }}" class="btn btn-primary me-2 mb-2">Sign Up</a>
             <a href="{{ url_for('auth.login') }}" class="btn btn-secondary">Log In</a>
         </div>
     </header>
@@ -169,7 +184,7 @@
         <div class="row mt-4">
             <!-- Team Member 1 -->
             <div class="col-md-4 text-center">
-                <h4>Team Member 1</h4>
+                <h4>Boss Ambaka</h4>
                 <ul class="list-unstyled">
                     <li><a href="https://www.linkedin.com/in/boss-ambaka-261136291/" target="_blank">LinkedIn</a></li>
                     <li><a href="https://github.com/bossambani" target="_blank">GitHub</a></li>
@@ -178,7 +193,7 @@
             </div>
             <!-- Team Member 2 -->
             <div class="col-md-4 text-center">
-                <h4>Team Member 2</h4>
+                <h4>Chinaza Ukwe</h4>
                 <ul class="list-unstyled">
                     <li><a href="https://www.linkedin.com/in/chinaza-ukwe-a02791254/" target="_blank">LinkedIn</a></li>
                     <li><a href="https://github.com/Nazavivian21" target="_blank">GitHub</a></li>
@@ -187,7 +202,7 @@
             </div>
             <!-- Team Member 3 -->
             <div class="col-md-4 text-center">
-                <h4>Team Member 3</h4>
+                <h4>Elijah Akande</h4>
                 <ul class="list-unstyled">
                     <li><a href="#" target="_blank">LinkedIn</a></li>
                     <li><a href="#" target="_blank">GitHub</a></li>
