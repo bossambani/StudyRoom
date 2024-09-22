@@ -8,12 +8,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <style>
         body {
-            background-color: #f8f9fa;
+            background-color: linear-gradient(to bottom right, #f0f4f8, #cfd8dc);
             font-family: Arial, sans-serif;
         }
       
         .hero-section {
-             background: url('/static/studyRoomImage2.jpg') center/cover no-repeat;
+             background: url('/static/images/studyRoomImage2.jpg') center/cover no-repeat;
              padding-top: 180px;
              height: 100vh;
              color: #ffffff;
@@ -101,6 +101,23 @@
     </style>
 </head>
 <body>
+
+    <header class="text-center p-3 d-flex justify-content-between align-items-center">
+        <img src="{{ url_for('static', filename='images/StudyHub-logo.jpeg') }}" alt="Study Room Logo" class="img-fluid" style="max-width: 100px; border-radius: 50px;">
+        <nav class="d-flex">
+            <ul class="nav list-unstyled">
+                <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
+                <li class="nav-item"><a class="nav-link" href="#about">About Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="header-actions">
+            <a href="{{ url_for('auth.signup') }}" class="btn btn-primary me-2">Sign Up</a>
+            <a href="{{ url_for('auth.login') }}" class="btn btn-secondary">Log In</a>
+        </div>
+    </header>
+    
+
 
     <!-- Hero Section -->
     <section class="hero-section">
@@ -210,6 +227,27 @@
         </div>
     </section>
 
+   <!-- Contact Section -->
+<section id="contact" class="py-5 bg-light">
+    <div class="container text-center">
+        <h2>Contact Us</h2>
+        <p>If you have any questions or need support, feel free to reach out to us:</p>
+        
+        <div class="contact-info">
+            <p><strong>Email:</strong> <a href="mailto:support@studyroom.com">support@studyroom.com</a></p>
+            <p><strong>Phone:</strong> <a href="tel:+123456789">+254 796895382</a></p>
+        </div>
+        
+        <div class="social-media">
+            <h4>Follow Us</h4>
+            <a href="https://web.facebook.com/profile.php?id=61566556340186" target="_blank">Facebook</a> | 
+            <a href="https://twitter.com/StudyRoom" target="_blank">Twitter</a> | 
+            <a href="https://www.linkedin.com/company/studyroom" target="_blank">LinkedIn</a>
+        </div>
+    </div>
+</section>
+    
+
     <!-- Call to Action Section -->
     <section class="call-to-action">
         <div class="container">
@@ -217,6 +255,13 @@
             <a href="{{ url_for('auth.signup') }}" aria-label="Sign up for Study Room">Get Started</a>
         </div>
     </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Study Room. All rights reserved.</p>
+        </div>
+    </footer>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
