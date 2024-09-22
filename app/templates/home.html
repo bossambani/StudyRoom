@@ -38,8 +38,16 @@
              display: flex;
              justify-content: center;
              align-items: center;
+             background-size: cover;
         }
 
+        @media (max-width: 767px) {
+            .hero-section {
+            background-position: top;
+            padding-top: 80px;
+            height: 100vh;
+            }
+        }
         .hero-section h1 {
             font-size: 3rem;
             margin-bottom: 20px;
@@ -166,10 +174,14 @@
             background-color: #f8f9fa;
             color: #007bff;
         }
+        .mb-0 {
+            color: #007bff;
+        }
     </style>
 </head>
 <body>
 
+<<<<<<< HEAD
     <header class="d-flex justify-content-between align-items-center py-3 px-4">
         <!-- Logo on the left -->
         <div>
@@ -192,6 +204,24 @@
                 <a href="{{ url_for('auth.signup') }}" class="btn btn-primary me-2" style="background-color: teal; border-color: teal;">Sign Up</a>
                 <a href="{{ url_for('auth.login') }}" class="btn btn-secondary" style="background-color: teal; border-color: teal;">Log In</a>
             </div>
+=======
+    <header class="text-center p-3 d-flex justify-content-between align-items-center">
+        <img src="{{ url_for('static', filename='images/StudyHub-logo.jpeg') }}" alt="Study Room Logo" class="img-fluid" style="max-width: 100px; border-radius: 50px;">
+        <!-- Tagline -->
+        <div class="ms-3">
+            <h2 class="mb-0" style="font-size: 1.5rem; font-weight: bold;">Study Smart Together</h2>
+        </div>
+        <nav class="d-flex">
+            <ul class="nav list-unstyled">
+                <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
+                <li class="nav-item"><a class="nav-link" href="#about">About Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="header-actions">
+            <a href="{{ url_for('auth.signup') }}" class="btn btn-primary me-2 mb-2">Sign Up</a>
+            <a href="{{ url_for('auth.login') }}" class="btn btn-secondary">Log In</a>
+>>>>>>> refs/remotes/origin/main
         </div>
     </header>
     
@@ -257,12 +287,44 @@
                 </div>
             </div>
 
+<<<<<<< HEAD
             <!-- Meet the Team Section -->
             <div class="row mt-5">
                 <div class="col-md-12 text-center">
                     <h3>Meet the Team</h3>
                 </div>
             </div>
+=======
+        <div class="row mt-4">
+            <!-- Team Member 1 -->
+            <div class="col-md-4 text-center">
+                <h4>Boss Ambaka</h4>
+                <ul class="list-unstyled">
+                    <li><a href="https://www.linkedin.com/in/boss-ambaka-261136291/" target="_blank">LinkedIn</a></li>
+                    <li><a href="https://github.com/bossambani" target="_blank">GitHub</a></li>
+                    <li><a href="https://x.com/Bossieambaka" target="_blank">Twitter</a></li>
+                </ul>
+            </div>
+            <!-- Team Member 2 -->
+            <div class="col-md-4 text-center">
+                <h4>Chinaza Ukwe</h4>
+                <ul class="list-unstyled">
+                    <li><a href="https://www.linkedin.com/in/chinaza-ukwe-a02791254/" target="_blank">LinkedIn</a></li>
+                    <li><a href="https://github.com/Nazavivian21" target="_blank">GitHub</a></li>
+                    <li><a href="https://x.com/Nazaukwe" target="_blank">Twitter</a></li>
+                </ul>
+            </div>
+            <!-- Team Member 3 -->
+            <div class="col-md-4 text-center">
+                <h4>Elijah Akande</h4>
+                <ul class="list-unstyled">
+                    <li><a href="#" target="_blank">LinkedIn</a></li>
+                    <li><a href="#" target="_blank">GitHub</a></li>
+                    <li><a href="#" target="_blank">Twitter</a></li>
+                </ul>
+            </div>
+        </div>
+>>>>>>> refs/remotes/origin/main
 
             <div class="row mt-4">
                 <!-- Team Member 1 -->
