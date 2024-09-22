@@ -1,509 +1,447 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to Study Room</title>
-    <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Welcome to Study Room</title>
+        <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <style>
-        body {
-            background-color: linear-gradient(to bottom right, #f0f4f8, #cfd8dc);
-            font-family: Arial, sans-serif;
-        }
-
-        header {
-            display: flex;
-            padding-left: 20px;
-            padding-top: 10px;
-            padding-bottom: 5px;
-        }
-
-        .list-items {
-            display: flex;
-            justify-content: space-evenly;
-            align-items: flex-end;
-            padding: 0px 5px;
-            margin-left: 600px;
-        }
-
-        .hero-section {
-             background: url('/static/images/studyRoomImage2.jpg') center/cover no-repeat;
-             padding-top: 180px;
-             height: 100vh;
-             color: #ffffff;
-             text-align: center;
-             display: flex;
-             justify-content: center;
-             align-items: center;
-             background-size: cover;
-        }
-
-        @media (max-width: 767px) {
-            .hero-section {
-            background-position: top;
-            padding-top: 80px;
-            height: 100vh;
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+        <style>
+            body {
+                background-color: linear-gradient(to bottom right, #f0f4f8, #cfd8dc);
+                font-family: Arial, sans-serif;
             }
-        }
-        .hero-section h1 {
-            font-size: 3rem;
-            margin-bottom: 20px;
-        }
-        .hero-section p {
-            font-size: 1.5rem;
-            margin-bottom: 30px;
-        }
-        .hero-section a {
-            background-color: #008080;
-            color: #ffffff;
-            border-radius: 10px;
-            padding: 10px 20px;
-            font-size: 1.25rem;
-            border-radius: 5px;
-            text-decoration: none;
-        }
-        .hero-section a:hover {
-            background-color: #f8f9fa;
-            color: #007bff;
-        }
-        .features-section {
-            padding: 40px 0;
-            text-align: center;
-        }
-        .features-section h2 {
-            margin-bottom: 40px;
-        }
-        .features-section .feature {
-            margin-bottom: 30px;
-        }
-        .team-card {
-            background-color: rgba(255, 255, 255, 0.8); 
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
 
-        .team-card:hover {
-            transform: translateY(-5px); 
-        }
+            header {
+                display: flex;
+                padding-left: 20px;
+                padding-top: 10px;
+                padding-bottom: 5px;
+            }
 
-        .team-card h4 {
-            color: #333;
-        }
+            .list-items {
+                display: flex;
+                justify-content: space-evenly;
+                align-items: flex-end;
+                padding: 0px 5px;
+                margin-left: 600px;
+            }
 
-        .team-card ul {
-            padding: 0;
-            list-style: none;
-        }
+            .hero-section {
+                background: url('/static/images/studyRoomImage2.jpg') center/cover no-repeat;
+                padding-top: 180px;
+                height: 100vh;
+                color: #ffffff;
+                text-align: center;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
 
-        .team-card ul li a {
-            color: teal;
-            text-decoration: none;
-        }
+            .hero-section h1 {
+                font-size: 3rem;
+                margin-bottom: 20px;
+            }
+            .hero-section p {
+                font-size: 1.5rem;
+                margin-bottom: 30px;
+            }
+            .hero-section a {
+                background-color: #008080;
+                color: #ffffff;
+                border-radius: 10px;
+                padding: 10px 20px;
+                font-size: 1.25rem;
+                border-radius: 5px;
+                text-decoration: none;
+            }
+            .hero-section a:hover {
+                background-color: #f8f9fa;
+                color: #007bff;
+            }
+            .features-section {
+                padding: 40px 0;
+                text-align: center;
+            }
+            .features-section h2 {
+                margin-bottom: 40px;
+            }
+            .features-section .feature {
+                margin-bottom: 30px;
+            }
+            .team-card {
+                background-color: rgba(255, 255, 255, 0.8); 
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+                transition: transform 0.3s ease;
+            }
 
-        .team-card ul li a:hover {
-            text-decoration: underline;
-        }
-        .nav-link {
-            color: teal;
-        }
-        .nav-link:hover {
-            color: #006D6F;
-            text-decoration: underline;  
-        }
-        #read-more:hover {
-            text-decoration: underline; 
-        }
-        #read-more {
-            color: teal;
-            font-weight: bold;
-            text-decoration: none;
-        }
-        a[href*="github.com"] {
-            color: teal;
-            text-decoration: none; 
-        }
-        a[href*="github.com"]:hover {
-            text-decoration: underline; 
-        }
-        .testimonial-section {
-            background-color: #ffffff;
-            padding: 60px 0;
-            text-align: center;
-        }
-        .testimonial-section h2 {
-            margin-bottom: 40px;
-        }
-        .testimonial {
-            background-color: #f8f9fa;
-            padding: 20px;
-            border-radius: 5px;
-            margin-bottom: 30px;
-        }
-        .testimonial p {
-            font-size: 1.1rem;
-            margin-bottom: 10px;
-            cursor: pointer;
-        }
-        .testimonial h5 {
-            font-size: 1.2rem;
-            font-weight: bold;
-        }
-        .call-to-action {
-            background-color: #008080;
-            color: white;
-            padding: 40px 0;
-            text-align: center;
-        }
-        .call-to-action h2 {
-            margin-bottom: 20px;
-        }
-        .call-to-action a {
-            background-color: #ffffff;
-            color: #007bff;
-            padding: 10px 30px;
-            font-size: 1.25rem;
-            border-radius: 5px;
-            text-decoration: none;
-        }
-        .call-to-action a:hover {
-            background-color: #f8f9fa;
-            color: #007bff;
-        }
-        .mb-0 {
-            color: #007bff;
-        }
-    </style>
-</head>
-<body>
+            .team-card:hover {
+                transform: translateY(-5px); 
+            }
 
-<<<<<<< HEAD
-    <header class="d-flex justify-content-between align-items-center py-3 px-4">
-        <!-- Logo on the left -->
-        <div>
-            <img src="{{ url_for('static', filename='images/studyRoom-logo.png') }}" alt="Study Room Logo" class="logo" style="max-width: 100px; border-radius: 10px;">
-        </div>
-    
-        <!-- List items and actions on the right -->
-        <div class="d-flex align-items-center">
-            <!-- Navigation Menu -->
-            <nav>
-                <ul class="nav list-unstyled d-flex mb-0">
-                    <li class="nav-item mx-3"><a class="nav-link" href="#features">Features</a></li>
-                    <li class="nav-item mx-3"><a class="nav-link" href="#about">About Us</a></li>
-                    <li class="nav-item mx-3"><a class="nav-link" href="#contact">Contact</a></li>
-                </ul>
-            </nav>
-    
-            <!-- Sign Up / Log In Buttons -->
-            <div class="header-actions ms-4">
-                <a href="{{ url_for('auth.signup') }}" class="btn btn-primary me-2" style="background-color: teal; border-color: teal;">Sign Up</a>
-                <a href="{{ url_for('auth.login') }}" class="btn btn-secondary" style="background-color: teal; border-color: teal;">Log In</a>
+            .team-card h4 {
+                color: #333;
+            }
+
+            .team-card ul {
+                padding: 0;
+                list-style: none;
+            }
+
+            .team-card ul li a {
+                color: teal;
+                text-decoration: none;
+            }
+
+            .team-card ul li a:hover {
+                text-decoration: underline;
+            }
+            .nav-link {
+                color: teal;
+            }
+            .nav-link:hover {
+                color: #006D6F;
+                text-decoration: underline;  
+            }
+            #read-more:hover {
+                text-decoration: underline; 
+            }
+            #read-more {
+                color: teal;
+                font-weight: bold;
+                text-decoration: none;
+            }
+            a[href*="github.com"] {
+                color: teal;
+                text-decoration: none; 
+            }
+            a[href*="github.com"]:hover {
+                text-decoration: underline; 
+            }
+            .testimonial-section {
+                background-color: #ffffff;
+                padding: 60px 0;
+                text-align: center;
+            }
+            .testimonial-section h2 {
+                margin-bottom: 40px;
+            }
+            .testimonial {
+                background-color: #f8f9fa;
+                padding: 20px;
+                border-radius: 5px;
+                margin-bottom: 30px;
+            }
+            .testimonial p {
+                font-size: 1.1rem;
+                margin-bottom: 10px;
+                cursor: pointer;
+            }
+            .testimonial h5 {
+                font-size: 1.2rem;
+                font-weight: bold;
+            }
+            .call-to-action {
+                background-color: #008080;
+                color: white;
+                padding: 40px 0;
+                text-align: center;
+            }
+            .call-to-action h2 {
+                margin-bottom: 20px;
+            }
+            .call-to-action a {
+                background-color: #ffffff;
+                color: #007bff;
+                padding: 10px 30px;
+                font-size: 1.25rem;
+                border-radius: 5px;
+                text-decoration: none;
+            }
+            .call-to-action a:hover {
+                background-color: #f8f9fa;
+                color: #007bff;
+            }
+        </style>
+    </head>
+    <body>
+
+        <header class="d-flex justify-content-between align-items-center py-3 px-4">
+            <!-- Logo on the left -->
+            <div>
+                <img src="{{ url_for('static', filename='images/studyRoom-logo.png') }}" alt="Study Room Logo" class="logo" style="max-width: 100px; border-radius: 10px;">
             </div>
-=======
-    <header class="text-center p-3 d-flex justify-content-between align-items-center">
-        <img src="{{ url_for('static', filename='images/StudyHub-logo.jpeg') }}" alt="Study Room Logo" class="img-fluid" style="max-width: 100px; border-radius: 50px;">
-        <!-- Tagline -->
-        <div class="ms-3">
-            <h2 class="mb-0" style="font-size: 1.5rem; font-weight: bold;">Study Smart Together</h2>
-        </div>
-        <nav class="d-flex">
-            <ul class="nav list-unstyled">
-                <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
-                <li class="nav-item"><a class="nav-link" href="#about">About Us</a></li>
-                <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-        <div class="header-actions">
-            <a href="{{ url_for('auth.signup') }}" class="btn btn-primary me-2 mb-2">Sign Up</a>
-            <a href="{{ url_for('auth.login') }}" class="btn btn-secondary">Log In</a>
->>>>>>> refs/remotes/origin/main
-        </div>
-    </header>
-    
+        
+            <!-- List items and actions on the right -->
+            <div class="d-flex align-items-center">
+                <!-- Navigation Menu -->
+                <nav>
+                    <ul class="nav list-unstyled d-flex mb-0">
+                        <li class="nav-item mx-3"><a class="nav-link" href="#features">Features</a></li>
+                        <li class="nav-item mx-3"><a class="nav-link" href="#about">About Us</a></li>
+                        <li class="nav-item mx-3"><a class="nav-link" href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+        
+                <!-- Sign Up / Log In Buttons -->
+                <div class="header-actions ms-4">
+                    <a href="{{ url_for('auth.signup') }}" class="btn btn-primary me-2" style="background-color: teal; border-color: teal;">Sign Up</a>
+                    <a href="{{ url_for('auth.login') }}" class="btn btn-secondary" style="background-color: teal; border-color: teal;">Log In</a>
+                </div>
+            </div>
+        </header>
+        
 
-    <!-- Hero Section -->
-    <section class="hero-section">
-        <div class="container">
-            <h1>Welcome to Study Room</h1>
-            <p>Your ultimate platform for collaborative learning and growth.</p>
-            <a href="#features" aria-label="Learn more about study Room features ">Learn More</a>
-        </div>
-    </section>
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="container">
+                <h1>Welcome to Study Room</h1>
+                <p>Your ultimate platform for collaborative learning and growth.</p>
+                <a href="#features" aria-label="Learn more about study Room features ">Learn More</a>
+            </div>
+        </section>
 
-    <!-- Features Section -->
-    <section id="features" class="py-5 bg-light">
-        <div class="container">
-            <h2 class="text-center mb-4">Why Choose Study Room?</h2>
-            <div class="row">
-                <!-- Feature 1 -->
-                <div class="col-md-4 mb-4">
-                    <div class="card shadow-sm">
-                        <div class="card-body text-center">
-                            <h4 class="card-title">Collaborative Learning</h4>
-                            <p class="card-text">Join study rooms with like-minded peers and enhance your knowledge together.</p>
+        <!-- Features Section -->
+        <section id="features" class="py-5 bg-light">
+            <div class="container">
+                <h2 class="text-center mb-4">Why Choose Study Room?</h2>
+                <div class="row">
+                    <!-- Feature 1 -->
+                    <div class="col-md-4 mb-4">
+                        <div class="card shadow-sm">
+                            <div class="card-body text-center">
+                                <h4 class="card-title">Collaborative Learning</h4>
+                                <p class="card-text">Join study rooms with like-minded peers and enhance your knowledge together.</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <!-- Feature 2 -->
-                <div class="col-md-4 mb-4">
-                    <div class="card shadow-sm">
-                        <div class="card-body text-center">
-                            <h4 class="card-title">Resource Sharing</h4>
-                            <p class="card-text">Easily upload and access study materials, notes, and resources anytime.</p>
+                    <!-- Feature 2 -->
+                    <div class="col-md-4 mb-4">
+                        <div class="card shadow-sm">
+                            <div class="card-body text-center">
+                                <h4 class="card-title">Resource Sharing</h4>
+                                <p class="card-text">Easily upload and access study materials, notes, and resources anytime.</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <!-- Feature 3 -->
-                <div class="col-md-4 mb-4">
-                    <div class="card shadow-sm">
-                        <div class="card-body text-center">
-                            <h4 class="card-title">Scheduled Meetings</h4>
-                            <p class="card-text">Organize and attend meetings with your study groups at your convenience.</p>
+                    <!-- Feature 3 -->
+                    <div class="col-md-4 mb-4">
+                        <div class="card shadow-sm">
+                            <div class="card-body text-center">
+                                <h4 class="card-title">Scheduled Meetings</h4>
+                                <p class="card-text">Organize and attend meetings with your study groups at your convenience.</p>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- About Section -->
-    <section id="about" class="py-5 bg-light">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 text-center">
-                    <h2>About</h2>
-                    <p class="lead mt-3" id="about-text">
-                        This project was inspired by the need for effective virtual collaboration and study environments, especially in the digital age where remote learning has become crucial.Our goal was to
-                        <span id="more-text" style="display: none;">
-                            create a platform that allows students to connect, share resources, and collaborate in real-time. This idea emerged from personal experiences with the challenges of remote studying.
-                        </span>
-                    </p>
-                    <a href="javascript:void(0)" id="read-more">Read More</a>
-                </div>
-            </div>
-
-<<<<<<< HEAD
-            <!-- Meet the Team Section -->
-            <div class="row mt-5">
-                <div class="col-md-12 text-center">
-                    <h3>Meet the Team</h3>
-                </div>
-            </div>
-=======
-        <div class="row mt-4">
-            <!-- Team Member 1 -->
-            <div class="col-md-4 text-center">
-                <h4>Boss Ambaka</h4>
-                <ul class="list-unstyled">
-                    <li><a href="https://www.linkedin.com/in/boss-ambaka-261136291/" target="_blank">LinkedIn</a></li>
-                    <li><a href="https://github.com/bossambani" target="_blank">GitHub</a></li>
-                    <li><a href="https://x.com/Bossieambaka" target="_blank">Twitter</a></li>
-                </ul>
-            </div>
-            <!-- Team Member 2 -->
-            <div class="col-md-4 text-center">
-                <h4>Chinaza Ukwe</h4>
-                <ul class="list-unstyled">
-                    <li><a href="https://www.linkedin.com/in/chinaza-ukwe-a02791254/" target="_blank">LinkedIn</a></li>
-                    <li><a href="https://github.com/Nazavivian21" target="_blank">GitHub</a></li>
-                    <li><a href="https://x.com/Nazaukwe" target="_blank">Twitter</a></li>
-                </ul>
-            </div>
-            <!-- Team Member 3 -->
-            <div class="col-md-4 text-center">
-                <h4>Elijah Akande</h4>
-                <ul class="list-unstyled">
-                    <li><a href="#" target="_blank">LinkedIn</a></li>
-                    <li><a href="#" target="_blank">GitHub</a></li>
-                    <li><a href="#" target="_blank">Twitter</a></li>
-                </ul>
-            </div>
-        </div>
->>>>>>> refs/remotes/origin/main
-
-            <div class="row mt-4">
-                <!-- Team Member 1 -->
-                <div class="col-md-4 text-center">
-                    <div class="team-card">
-                        <h4>Team Member 1</h4>
-                        <ul class="list-unstyled">
-                            <li><a href="https://www.linkedin.com/in/boss-ambaka-261136291/" target="_blank">LinkedIn</a></li>
-                            <li><a href="https://github.com/bossambani" target="_blank">GitHub</a></li>
-                            <li><a href="https://x.com/Bossieambaka" target="_blank">Twitter</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <!-- Team Member 2 -->
-                <div class="col-md-4 text-center">
-                    <div class="team-card">
-                        <h4>Team Member 2</h4>
-                        <ul class="list-unstyled">
-                            <li><a href="https://www.linkedin.com/in/chinaza-ukwe-a02791254/" target="_blank">LinkedIn</a></li>
-                            <li><a href="https://github.com/Nazavivian21" target="_blank">GitHub</a></li>
-                            <li><a href="https://x.com/Nazaukwe" target="_blank">Twitter</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <!-- Team Member 3 -->
-                <div class="col-md-4 text-center">
-                    <div class="team-card">
-                        <h4>Team Member 3</h4>
-                        <ul class="list-unstyled">
-                            <li><a href="#" target="_blank">LinkedIn</a></li>
-                            <li><a href="#" target="_blank">GitHub</a></li>
-                            <li><a href="#" target="_blank">Twitter</a></li>
-                        </ul>
                     </div>
                 </div>
             </div>
         </section>
-            <div class="row mt-5">
-                <div class="col-md-12 text-center">
-                    <h4>Project Repository</h4>
-                    <p>
-                        You can find the source code for this project on our <a href="https://github.com/bossambani/StudyRoom" target="_blank" id="">GitHub repository</a>.
-                    </p>
+        
+        <!-- About Section -->
+        <section id="about" class="py-5 bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <h2>About</h2>
+                        <p class="lead mt-3" id="about-text">
+                            This project was inspired by the need for effective virtual collaboration and study environments, especially in the digital age where remote learning has become crucial.Our goal was to
+                            <span id="more-text" style="display: none;">
+                                create a platform that allows students to connect, share resources, and collaborate in real-time. This idea emerged from personal experiences with the challenges of remote studying.
+                            </span>
+                        </p>
+                        <a href="javascript:void(0)" id="read-more">Read More</a>
+                    </div>
                 </div>
+
+                <!-- Meet the Team Section -->
+                <div class="row mt-5">
+                    <div class="col-md-12 text-center">
+                        <h3>Meet the Team</h3>
+                    </div>
+                </div>
+
+                <div class="row mt-4">
+                    <!-- Team Member 1 -->
+                    <div class="col-md-4 text-center">
+                        <div class="team-card">
+                            <h4>Team Member 1</h4>
+                            <ul class="list-unstyled">
+                                <li><a href="https://www.linkedin.com/in/boss-ambaka-261136291/" target="_blank">LinkedIn</a></li>
+                                <li><a href="https://github.com/bossambani" target="_blank">GitHub</a></li>
+                                <li><a href="https://x.com/Bossieambaka" target="_blank">Twitter</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Team Member 2 -->
+                    <div class="col-md-4 text-center">
+                        <div class="team-card">
+                            <h4>Team Member 2</h4>
+                            <ul class="list-unstyled">
+                                <li><a href="https://www.linkedin.com/in/chinaza-ukwe-a02791254/" target="_blank">LinkedIn</a></li>
+                                <li><a href="https://github.com/Nazavivian21" target="_blank">GitHub</a></li>
+                                <li><a href="https://x.com/Nazaukwe" target="_blank">Twitter</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Team Member 3 -->
+                    <div class="col-md-4 text-center">
+                        <div class="team-card">
+                            <h4>Team Member 3</h4>
+                            <ul class="list-unstyled">
+                                <li><a href="#" target="_blank">LinkedIn</a></li>
+                                <li><a href="#" target="_blank">GitHub</a></li>
+                                <li><a href="#" target="_blank">Twitter</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+                <div class="row mt-5">
+                    <div class="col-md-12 text-center">
+                        <h4>Project Repository</h4>
+                        <p>
+                            You can find the source code for this project on our <a href="https://github.com/bossambani/StudyRoom" target="_blank" id="">GitHub repository</a>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Testimonials Section -->
+        <section class="testimonial-section py-5" style="background-color: #f8f9fa;">
+            <div class="container">
+                <h2 class="text-center py-3">What Our Users Say</h2>
+                <div class="row">
+                    <!-- Testimonial 1 -->
+                    <div class="col-md-4 mb-4">
+                        <div class="card testimonial-card shadow-sm">
+                            <div class="card-body">
+                                <p id="first">"Study Room has revolutionized the way I study..."</p>
+                                <h5>- Jane Doe, Student</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Testimonial 2 -->
+                    <div class="col-md-4 mb-4">
+                        <div class="card testimonial-card shadow-sm">
+                            <div class="card-body">
+                                <p id="second">"I love the easy access to resources and group study features!"</p>
+                                <h5>- John Smith, Learner</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Testimonial 3 -->
+                    <div class="col-md-4 mb-4">
+                        <div class="card testimonial-card shadow-sm">
+                            <div class="card-body">
+                                <p id="third">"The platform has made group studying more productive..."</p>
+                                <h5>- Sarah Lee, Graduate</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>    
+        
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5 bg-light">
+        <div class="container text-center">
+            <h2 class="mb-4">Contact Us</h2>
+            <p class="lead mb-5">If you have any questions or need support, feel free to reach out to us:</p>
+            
+            <div class="contact-info mb-4">
+                <p><strong>Email:</strong> <a href="mailto:support@studyroom.com">support@studyroom.com</a></p>
+                <p><strong>Phone:</strong> <a href="tel:+254 796895382">+254 796895382</a></p>
+            </div>
+
+            <div class="social-media">
+                <h4 class="mb-3">Follow Us</h4>
+                <a href="https://web.facebook.com/profile.php?id=61566556340186" target="_blank" class="btn btn-outline-primary btn-sm mx-1">
+                    <i class="fab fa-facebook-f"></i> Facebook
+                </a>
+                <a href="https://twitter.com/StudyRoom" target="_blank" class="btn btn-outline-info btn-sm mx-1">
+                    <i class="fab fa-twitter"></i> Twitter
+                </a>
+                <a href="https://www.linkedin.com/company/studyroom" target="_blank" class="btn btn-outline-secondary btn-sm mx-1">
+                    <i class="fab fa-linkedin"></i> LinkedIn
+                </a>
             </div>
         </div>
     </section>
 
+        
 
-    <!-- Testimonials Section -->
-    <section class="testimonial-section py-5" style="background-color: #f8f9fa;">
-        <div class="container">
-            <h2 class="text-center py-3">What Our Users Say</h2>
-            <div class="row">
-                <!-- Testimonial 1 -->
-                <div class="col-md-4 mb-4">
-                    <div class="card testimonial-card shadow-sm">
-                        <div class="card-body">
-                            <p id="first">"Study Room has revolutionized the way I study..."</p>
-                            <h5>- Jane Doe, Student</h5>
-                        </div>
-                    </div>
-                </div>
-                <!-- Testimonial 2 -->
-                <div class="col-md-4 mb-4">
-                    <div class="card testimonial-card shadow-sm">
-                        <div class="card-body">
-                            <p id="second">"I love the easy access to resources and group study features!"</p>
-                            <h5>- John Smith, Learner</h5>
-                        </div>
-                    </div>
-                </div>
-                <!-- Testimonial 3 -->
-                <div class="col-md-4 mb-4">
-                    <div class="card testimonial-card shadow-sm">
-                        <div class="card-body">
-                            <p id="third">"The platform has made group studying more productive..."</p>
-                            <h5>- Sarah Lee, Graduate</h5>
-                        </div>
-                    </div>
-                </div>
+        <!-- Call to Action Section -->
+        <section class="call-to-action">
+            <div class="container">
+                <h2>Join Study Room Today</h2>
+                <a href="{{ url_for('auth.signup') }}" aria-label="Sign up for Study Room">Get Started</a>
             </div>
-        </div>
-    </section>    
-    
+        </section>
 
-   <!-- Contact Section -->
-   <section id="contact" class="py-5 bg-light">
-    <div class="container text-center">
-        <h2 class="mb-4">Contact Us</h2>
-        <p class="lead mb-5">If you have any questions or need support, feel free to reach out to us:</p>
-        
-        <div class="contact-info mb-4">
-            <p><strong>Email:</strong> <a href="mailto:support@studyroom.com">support@studyroom.com</a></p>
-            <p><strong>Phone:</strong> <a href="tel:+254 796895382">+254 796895382</a></p>
-        </div>
-
-        <div class="social-media">
-            <h4 class="mb-3">Follow Us</h4>
-            <a href="https://web.facebook.com/profile.php?id=61566556340186" target="_blank" class="btn btn-outline-primary btn-sm mx-1">
-                <i class="fab fa-facebook-f"></i> Facebook
-            </a>
-            <a href="https://twitter.com/StudyRoom" target="_blank" class="btn btn-outline-info btn-sm mx-1">
-                <i class="fab fa-twitter"></i> Twitter
-            </a>
-            <a href="https://www.linkedin.com/company/studyroom" target="_blank" class="btn btn-outline-secondary btn-sm mx-1">
-                <i class="fab fa-linkedin"></i> LinkedIn
-            </a>
-        </div>
-    </div>
-</section>
-
-    
-
-    <!-- Call to Action Section -->
-    <section class="call-to-action">
+        <!-- Footer -->
+        <footer class="footer py-4" style="background-color: #f8f9fa; border-top: 1px solid #e9ecef; text-align: center;">
         <div class="container">
-            <h2>Join Study Room Today</h2>
-            <a href="{{ url_for('auth.signup') }}" aria-label="Sign up for Study Room">Get Started</a>
+            <p>&copy; 2024 Study Room. All rights reserved.</p>
         </div>
-    </section>
+    </footer>
 
-    <!-- Footer -->
-    <footer class="footer py-4" style="background-color: #f8f9fa; border-top: 1px solid #e9ecef; text-align: center;">
-    <div class="container">
-        <p>&copy; 2024 Study Room. All rights reserved.</p>
-    </div>
-</footer>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#first').on('click', function(){
-                var $this  = $(this);
-                $this.fadeOut(500, function() {
-                    $(this).text('"Study Room has revolutionized the way I study. The collaborative tools are fantastic!"').fadeIn(500);       
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('#first').on('click', function(){
+                    var $this  = $(this);
+                    $this.fadeOut(500, function() {
+                        $(this).text('"Study Room has revolutionized the way I study. The collaborative tools are fantastic!"').fadeIn(500);       
+                    })
+                                
                 })
-                               
-            })
-            $('#second').on('click', function(){
-                var $this  = $(this);
-                $this.fadeOut(500, function() {
-                    $(this).text('"I love the easy access to resources and the ability to connect with peers"').fadeIn(500);       
+                $('#second').on('click', function(){
+                    var $this  = $(this);
+                    $this.fadeOut(500, function() {
+                        $(this).text('"I love the easy access to resources and the ability to connect with peers"').fadeIn(500);       
+                    })
+                                
                 })
-                               
-            })
-            $('#third').on('click', function(){
-                var $this  = $(this);
-                $this.fadeOut(500, function() {
-                    $(this).text('"The platform has made group projects so much easier. Highly recommend!"').fadeIn(500);       
+                $('#third').on('click', function(){
+                    var $this  = $(this);
+                    $this.fadeOut(500, function() {
+                        $(this).text('"The platform has made group projects so much easier. Highly recommend!"').fadeIn(500);       
+                    })
+                                
                 })
-                               
+                $('#read-more').on('click', function() {
+                var moreText = $('#more-text');
+                if (moreText.is(':visible')) {
+                    moreText.slideUp();
+                    $(this).text('Read More');
+                } else {
+                    moreText.slideDown();
+                    $(this).text('Read Less');
+                }
+            });
+                                
+            
+                $('a[href="#features"]').on('click', function(event) {
+                event.preventDefault();
+                $('html, body').animate({
+                    scrollTop: $('#features').offset().top
+                }, 800);
+
+                // After scrolling, show a message or additional info
+                setTimeout(function() {
+                    alert("Discover how Study Room can help you collaborate, share resources, and schedule meetings effortlessly. Dive into the features below to learn more!");
+                }, 900);
+            });
+            
             })
-            $('#read-more').on('click', function() {
-            var moreText = $('#more-text');
-            if (moreText.is(':visible')) {
-                moreText.slideUp();
-                $(this).text('Read More');
-            } else {
-                moreText.slideDown();
-                $(this).text('Read Less');
-            }
-        });
-                               
-        
-            $('a[href="#features"]').on('click', function(event) {
-            event.preventDefault();
-            $('html, body').animate({
-                scrollTop: $('#features').offset().top
-            }, 800);
 
-            // After scrolling, show a message or additional info
-            setTimeout(function() {
-                alert("Discover how Study Room can help you collaborate, share resources, and schedule meetings effortlessly. Dive into the features below to learn more!");
-            }, 900);
-        });
-        
-        })
-
-    </script>
-</body>
+        </script>
+    </body>
 </html>
