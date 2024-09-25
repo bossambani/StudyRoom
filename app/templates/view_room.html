@@ -1,14 +1,9 @@
 {% extends 'base.html' %}
 {% block title %}View Room{% endblock %}
 {% block content %}
-<div class="container mt-4">
+<div class="container mt-4" style="background: url('/static/images/roomImage.jpg') center/cover no-repeat";>
     <h2>{{ room.name }}</h2>
     <p>{{ room.description }}</p>
-
-    <!-- Button to leave the room -->
-    <form action="{{ url_for('study_room.leave_room', room_id=room.id) }}" method="POST">
-        <button type="submit" class="btn btn-danger w-50">Leave Room</button>
-    </form>
 
     <!-- Participants Section -->
     <h3>Participants</h3>
@@ -29,13 +24,17 @@
                 <div class="form-group">
                     <label for="add-user">Select User:</label>
                     <select id="add-user" name="user_id" class="form-control">
-                        <option disabled selected>Select User</option>
-                        {% for user in available_users %}
-                            <option value="{{ user.id }}">{{ user.username }}</option>
-                        {% endfor %}
+                        {% if room.participants %}
+                            <option disabled selected>Select User</option>
+                            {% for user in available_users %}
+                                <option value="{{ user.id }}">{{ user.username }}</option>
+                            {% endfor %}
+                        {% else %}
+                            <option disabled selected>No user selected</option>
+                        {% endif %}
                     </select>
                 </div>
-                <button type="submit" class="btn btn-primary mt-2 w-50">Add Participant</button>
+                <button type="submit" class="btn btn-teal mt-2 w-50">Add Participant</button>
             </form>
         </div>
         <div class="col-md-6">
@@ -43,23 +42,23 @@
             <form method="POST" action="{{ url_for('study_room.view_room', room_id=room.id) }}">
                 <input type="hidden" name="action" value="remove">
                 <div class="form-group">
-                    <label for="remove-user">Select User:</label>
+                    <label for="remove-user">Remove User:</label>
                     <select id="remove-user" name="user_id" class="form-control">
-                        {% for user in room.participants %}
-                            <option value="{{ user.id }}">{{ user.username }}</option>
-                        {% endfor %}
+                        {% if room.participants %}
+                            <option disabled selected>Select User</option>
+                            {% for user in room.participants %}
+                                <option value="{{ user.id }}">{{ user.username }}</option>
+                            {% endfor %}
+                        {% else %}
+                            <option disabled selected>No user selected</option>
+                        {% endif %}
                     </select>
                 </div>
                 <button type="submit" class="btn btn-danger mt-2 w-50">Remove Participant</button>
             </form>
         </div>
     </div>
-
-      <!-- Button to delete the room -->
-      <form action="{{ url_for('study_room.delete_room', room_id=room.id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this room? This action cannot be undone.');">
-        <button type="submit" class="btn btn-danger w-50">Delete Room</button>
-    </form>
-{% endif %}
+    {% endif %}
 
     <!-- Video Communication Section -->
     <h3>Live Video Collaboration</h3>
@@ -70,26 +69,60 @@
             style="width: 100%; height: 100%; border: 0;">
         </iframe>
     </div>
-</div>
 
-<div class="row mb-4">
-    <div class="col-md-6 mb-4">
-    <button class="btn btn-primary w-50">
-        <h4>
-            <a href="{{ url_for('study_room.view_resources', room_id=room.id) }}"
-            style="text-decoration: none; color: white;"
-            aria-label="View Resources for this room">View Resources</a>
-        </h4>
-    </button>
-    
-</div>
-    <div class="col-md-6">
-        <button class="btn btn-primary w-50">
-            <h4>
-                <a href="{{ url_for('study_room.upload_resource', room_id=room.id) }}"
-                style="text-decoration: none; color: white;">Upload Resources</a>
-            </h4>
-        </button>
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <button class="btn btn-teal w-100">
+                <h4>
+                    <a href="{{ url_for('study_room.view_resources', room_id=room.id) }}"
+                    style="text-decoration: none; color: white;"
+                    aria-label="View Resources for this room">View Resources</a>
+                </h4>
+            </button>
+        </div>
+        <div class="col-md-6">
+            <button class="btn btn-teal w-100">
+                <h4>
+                    <a href="{{ url_for('study_room.upload_resource', room_id=room.id) }}"
+                    style="text-decoration: none; color: white;">Upload Resources</a>
+                </h4>
+            </button>
+        </div>
+    </div>
+
+    <!-- Leave and Delete Room Buttons at the Bottom -->
+    <div class="row mt-5">
+        <div class="col-md-6">
+            <form action="{{ url_for('study_room.leave_room', room_id=room.id) }}" method="POST">
+                <button type="submit" class="btn btn-danger w-100">Leave Room</button>
+            </form>
+        </div>
+        {% if room.owner_id == current_user.id %}
+        <div class="col-md-6">
+            <form action="{{ url_for('study_room.delete_room', room_id=room.id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this room? This action cannot be undone.');">
+                <button type="submit" class="btn btn-danger w-100">Delete Room</button>
+            </form>
+        </div>
+        {% endif %}
     </div>
 </div>
+
+<!-- Add custom CSS to define the colors -->
+<style>
+    .btn-teal {
+        background-color: #008080;
+        color: white;
+    }
+    .btn-teal:hover {
+        background-color: #006666;
+    }
+    .btn-danger {
+        background-color: #DC3545;
+        color: white;
+    }
+    .btn-danger:hover {
+        background-color: #C82333;
+    }
+</style>
+
 {% endblock %}
