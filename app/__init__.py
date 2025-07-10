@@ -13,13 +13,7 @@ def create_app():
     app.config['SECRET_KEY'] = os.urandom(24)
     app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL', 'sqlite:///{db_Name}')
 
-    #Email configuration 
-    app.config['MAIL_SERVER'] = 'smtp.gmail.com'
-    app.config['MAIL_PORT'] = 587
-    app.config['MAIL_USE_TLS'] = True
-    app.config['MAIL_USERNAME'] = 'bossambaka@gmail.com'
-    app.config['MAIL_PASSWORD'] = 'aehp nucu zoan evkc'
-    app.config['MAIL_DEFAULT_SENDER'] = 'bossambaka@gmail.com'
+
 
     mail.init_app(app)
     db.init_app(app)
